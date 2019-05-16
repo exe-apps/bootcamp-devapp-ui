@@ -5,15 +5,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import DateTimePicker from 'react-datetime-picker';
 import { ADD_DEVELOPER } from '../redux/constant/developer-action-constants';
+import { hideAddDeveloperModal } from '../redux/action/developer-action';
 
 
 class DeveloperModal extends Component{
 
     render() {
-
-        console.log('MODALZ');
-        console.log(this.props);
-
         return (
             <Modal show={this.props.showDeveloperModal}>
                 <Modal.Header>
@@ -79,7 +76,7 @@ class DeveloperModal extends Component{
                 </Modal.Body>
     
                 <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
+                    <Button variant="secondary" onClick={this.props.hideAddDeveloperModal}>Close</Button>
                     <Button variant="primary">Save changes</Button>
                 </Modal.Footer>
             </Modal>
@@ -97,8 +94,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        //getDeveloperList: () => dispatch(getDeveloperList())
-        //showDeveloperModal: () => dispatch(showDeveloperModal())
+        hideAddDeveloperModal: () => dispatch(hideAddDeveloperModal())
     };
 }
 

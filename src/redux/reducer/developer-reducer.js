@@ -1,7 +1,9 @@
 import { 
-    GET_DEVELOPER_LIST, 
+    GET_DEVELOPER_LIST,
     SHOW_ADD_DEVELOPER_MODAL,
-    ADD_DEVELOPER 
+    SHOW_UPDATE_DEVELOPER_MODAL,
+    ADD_DEVELOPER,
+    HIDE_DEVELOPER_MODAL
 } from '../constant/developer-action-constants';
 
 const initialState = {
@@ -37,6 +39,21 @@ const developerReducer = (state = initialState, action) => {
         return {
             ...state,
             developerModalFlow: action.developerModalFlow,
+            showDeveloperModal: action.showDeveloperModal
+        }
+    }
+
+    if(action.type === SHOW_UPDATE_DEVELOPER_MODAL) {
+        return {
+            ...state,
+            developerModalFlow: action.developerModalFlow,
+            showDeveloperModal: action.showDeveloperModal
+        }
+    }
+
+    if(action.type === HIDE_DEVELOPER_MODAL) {
+        return {
+            ...state,
             showDeveloperModal: action.showDeveloperModal
         }
     }

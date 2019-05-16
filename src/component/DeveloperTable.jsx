@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { getDeveloperList } from '../redux/action/developer-action';
 import Table from 'react-bootstrap/Table';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { 
+    getDeveloperList, 
+    showUpdateDeveloperModal, 
+    deleteDeveloper 
+} from '../redux/action/developer-action';
 
 class DeveloperTable extends Component {
 
@@ -35,8 +39,8 @@ class DeveloperTable extends Component {
                                     <td className='developer-table-cell'>{developer.birthDate}</td>
                                     <td className='developer-table-cell'>{developer.position}</td>
                                     <td className='developer-table-cell'>
-                                        <EditIcon onClick={this.clickEdit} />
-                                        <DeleteIcon onClick={this.clickDelete} />
+                                        <EditIcon onClick={this.props.showUpdateDeveloperModal} />
+                                        <DeleteIcon onClick={() => this.props.deleteDeveloper(developer.devId)} />
                                     </td>
                                 </tr>
                             )
@@ -57,7 +61,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getDeveloperList: () => dispatch(getDeveloperList())
+        getDeveloperList: () => dispatch(getDeveloperList()),
+        showUpdateDeveloperModal: () => dispatch(showUpdateDeveloperModal()),
+        deleteDeveloper: (devId) => dispatch(deleteDeveloper(devId))
     };
 }
 
