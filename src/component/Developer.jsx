@@ -7,36 +7,41 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import DeveloperTable from './DeveloperTable'
 import DeveloperModal from './DeveloperModal'
-import { showAddDeveloperModal } from '../redux/action/developer-action';
+import { addDeveloper, updateDeveloper, showAddDeveloperModal, showUpdateDeveloperModal } from '../redux/action/developer-action';
+import { ADD_DEVELOPER } from '../redux/constant/developer-action-constants';
 
 class Developer extends Component {
 
-    clickAdd = e => {
-        console.log('Click ADD');
-        this.props.showAddDeveloperModal();
-    }
+    handleSubmit = (developerData, props, developerForm) => {
+        const { addDeveloper, updateDeveloper, developerModalFlow } = this.props;
 
-    clickEdit = e => {
-        console.log('Click EDIT');
-    }
-
-    clickDelete = e => {
-        console.log('Click DELETE');
+        if(developerModalFlow === ADD_DEVELOPER) 
+        {
+            addDeveloper(developerData);
+        }
+        else
+        {
+            updateDeveloper(developerData);
+        }
+        
+        developerForm.reset();
     }
 
     render() {
+        const {showAddDeveloperModal} = this.props;
+
         return (
             <Container fluid={true}>
                 <Row>
                     <Col>
                         <DeveloperTable />
-                        <DeveloperModal />
+                        <DeveloperModal onSubmit={this.handleSubmit} />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                         <Fab color="primary" aria-label="Add">
-                            <AddIcon onClick={this.clickAdd} />
+                            <AddIcon onClick={showAddDeveloperModal} />
                         </Fab>
                     </Col>
                 </Row>
@@ -47,14 +52,17 @@ class Developer extends Component {
 
 const mapStateToProps = state => {
     return { 
-        //showDeveloperModal: state.developerReducer.showDeveloperModal
+        developerModalFlow: state.developerData.developerModalFlow
     };
 };
 
 
 const mapDispatchToProps = dispatch => {
     return {
-        showAddDeveloperModal: () => dispatch(showAddDeveloperModal())
+        addDeveloper: (devData) => dispatch(addDeveloper(devData)),
+        showAddDeveloperModal: () => dispatch(showAddDeveloperModal()),
+        showUpdateDeveloperModal: () => dispatch(showUpdateDeveloperModal()),
+        updateDeveloper: (devData) => dispatch(updateDeveloper(devData))
     };
 }
 

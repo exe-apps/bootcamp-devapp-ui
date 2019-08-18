@@ -1,6 +1,5 @@
 import { 
     GET_DEVELOPER_LIST,
-    DELETE_DEVELOPER,
     SHOW_ADD_DEVELOPER_MODAL,
     SHOW_UPDATE_DEVELOPER_MODAL,
     HIDE_DEVELOPER_MODAL,
@@ -22,32 +21,68 @@ export const getDeveloperList = () => {
     }
 }
 
-export const deleteDeveloper = (devId) => {
+export const addDeveloper = body => {
+    return dispatch => {
+        return axios.post(DEVELOPER_URL, body)
+            .then(response => {
+                dispatch({type: ADD_DEVELOPER});
+                
+                axios.get(DEVELOPER_URL)
+                    .then(response => {
+                        dispatch({type: GET_DEVELOPER_LIST, payload: response.data})
+                    })
+                    .catch(error => {
+                        // PUT ERROR DISPATCHER HERE
+                    })
+            })
+            .catch(error => {
+                // PUT ERROR DISPATCHER HERE
+            })
+    }
+}
 
-    let urlWithId = DEVELOPER_ID_URL.replace('{devId}', devId);
-
-    console.log('DELETE ACTION');
-    console.log(urlWithId);
+export const updateDeveloper = body => {
+    let DEVELOPER_URL_PROCESSED = DEVELOPER_ID_URL.replace('{devId}', body.devId);
 
     return dispatch => {
-        
+        return axios.put(DEVELOPER_URL_PROCESSED, body)
+            .then(response => {
+                dispatch({type: UPDATE_DEVELOPER});
+                
+                axios.get(DEVELOPER_URL)
+                    .then(response => {
+                        dispatch({type: GET_DEVELOPER_LIST, payload: response.data})
+                    })
+                    .catch(error => {
+                        // PUT ERROR DISPATCHER HERE
+                    })
+            })
+            .catch(error => {
+                // PUT ERROR DISPATCHER HERE
+            })
     }
+}
 
-    // return dispatch => {
-    //     return axios.delete(DEVELOPER_ID_URL)
-    //         .then(response => {
-    //             axios.get(DEVELOPER_URL)
-    //             .then(response => {
-    //                 dispatch({type: GET_DEVELOPER_LIST, payload: response.data})
-    //             })
-    //             .catch(error => {
-    //                 // PUT ERROR DISPATCHER HERE
-    //             })
-    //         })
-    //         .catch(error => {
-    //             // PUT ERROR DISPATCHER HERE
-    //         })
-    // }
+export const deleteDeveloper = (devId) => {
+
+    let DEVELOPER_URL_PROCESSED = DEVELOPER_ID_URL.replace('{devId}', devId);
+
+    return dispatch => {
+        return axios.delete(DEVELOPER_URL_PROCESSED)
+            .then(response => {
+                
+                axios.get(DEVELOPER_URL)
+                    .then(response => {
+                        dispatch({type: GET_DEVELOPER_LIST, payload: response.data})
+                    })
+                    .catch(error => {
+                        // PUT ERROR DISPATCHER HERE
+                    })
+            })
+            .catch(error => {
+                // PUT ERROR DISPATCHER HERE
+            })
+    }
 }
 
 export const showAddDeveloperModal = () => {
@@ -62,13 +97,14 @@ export const showAddDeveloperModal = () => {
     }
 }
 
-export const showUpdateDeveloperModal = () => {
+export const showUpdateDeveloperModal = (developer) => {
     return dispatch => {
         dispatch(
             {
                 type: SHOW_UPDATE_DEVELOPER_MODAL,
                 showDeveloperModal: true,
-                developerModalFlow: UPDATE_DEVELOPER
+                developerModalFlow: UPDATE_DEVELOPER,
+                selectedDeveloper: developer
             }
         )
     }

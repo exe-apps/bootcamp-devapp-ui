@@ -16,6 +16,8 @@ class DeveloperTable extends Component {
     }
 
     render() {
+        const {deleteDeveloper, showUpdateDeveloperModal} = this.props;
+
         return (
             <Table striped responsive>
                 <thead>
@@ -23,24 +25,22 @@ class DeveloperTable extends Component {
                         <th className='developer-table-cell'>FIRST NAME</th>
                         <th className='developer-table-cell'>MIDDLE NAME</th>
                         <th className='developer-table-cell'>LAST NAME</th>
-                        <th className='developer-table-cell'>BIRTH DATE</th>
                         <th className='developer-table-cell'>POSITION</th>
                         <th className='developer-table-cell'></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        this.props.developerList.map((developer, index) =>{
+                        this.props.developerList.map((developer) =>{
                             return (
-                                <tr key={index} className='developer-table-row'>
+                                <tr key={developer.devId} className='developer-table-row'>
                                     <td className='developer-table-cell'>{developer.firstName}</td>
                                     <td className='developer-table-cell'>{developer.middleName}</td>
                                     <td className='developer-table-cell'>{developer.lastName}</td>
-                                    <td className='developer-table-cell'>{developer.birthDate}</td>
                                     <td className='developer-table-cell'>{developer.position}</td>
                                     <td className='developer-table-cell'>
-                                        <EditIcon onClick={this.props.showUpdateDeveloperModal} />
-                                        <DeleteIcon onClick={() => this.props.deleteDeveloper(developer.devId)} />
+                                        <EditIcon onClick={() => showUpdateDeveloperModal(developer)} />
+                                        <DeleteIcon onClick={() => deleteDeveloper(developer.devId)} />
                                     </td>
                                 </tr>
                             )
@@ -54,7 +54,7 @@ class DeveloperTable extends Component {
 
 const mapStateToProps = state => {
     return { 
-        developerList: state.developerReducer.developerList 
+        developerList: state.developerData.developerList 
     };
 };
 
@@ -62,7 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getDeveloperList: () => dispatch(getDeveloperList()),
-        showUpdateDeveloperModal: () => dispatch(showUpdateDeveloperModal()),
+        showUpdateDeveloperModal: (developer) => dispatch(showUpdateDeveloperModal(developer)),
         deleteDeveloper: (devId) => dispatch(deleteDeveloper(devId))
     };
 }
