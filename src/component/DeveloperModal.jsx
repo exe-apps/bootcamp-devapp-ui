@@ -11,12 +11,13 @@ class DeveloperModal extends Component {
     render() {
         const { 
             developerModalFlow, 
+            showDeveloperModal,
             handleSubmit, 
             hideAddDeveloperModal
         } = this.props;
 
         return (
-            <Modal show={this.props.showDeveloperModal}>
+            <Modal show={showDeveloperModal}>
                 <Modal.Header>
                         <Modal.Title>
                             {developerModalFlow === ADD_DEVELOPER ?
