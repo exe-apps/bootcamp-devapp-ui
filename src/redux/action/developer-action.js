@@ -1,5 +1,6 @@
 import { 
     GET_DEVELOPER_LIST,
+    GET_DEVELOPER_BY_ID,
     SHOW_ADD_DEVELOPER_MODAL,
     SHOW_UPDATE_DEVELOPER_MODAL,
     HIDE_DEVELOPER_MODAL,
@@ -14,6 +15,20 @@ export const getDeveloperList = () => {
         return axios.get(DEVELOPER_URL)
             .then(response => {
                 dispatch({type: GET_DEVELOPER_LIST, payload: response.data})
+            })
+            .catch(error => {
+                // PUT ERROR DISPATCHER HERE
+            })
+    }
+}
+
+export const getDeveloperById = (devId) => {
+    let DEVELOPER_URL_PROCESSED = DEVELOPER_ID_URL.replace('{devId}', devId);
+    
+    return dispatch => {
+        return axios.get(DEVELOPER_URL_PROCESSED)
+            .then(response => {
+                dispatch({type: GET_DEVELOPER_BY_ID, payload: response.data})
             })
             .catch(error => {
                 // PUT ERROR DISPATCHER HERE

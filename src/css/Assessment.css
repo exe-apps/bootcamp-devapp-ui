@@ -1,0 +1,17 @@
+div.name-section {
+    padding-left: 50px;
+}
+
+div.name-display {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+div.assessment-table {
+    padding-top: 50px;
+}
+
+select.skill-dropdown {
+    height: 40px;
+    width: 100%;
+}

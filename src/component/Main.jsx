@@ -7,7 +7,7 @@ import Report from './Report';
 
 const Main = () => {
   return (
-    <main>
+    <main className='content-body'>
       <Switch>
         <Route exact path='/' component={Developer}/>
         <Route path='/skills' component={Skill}/>

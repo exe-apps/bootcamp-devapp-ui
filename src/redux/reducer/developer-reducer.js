@@ -1,5 +1,6 @@
 import { 
     GET_DEVELOPER_LIST,
+    GET_DEVELOPER_BY_ID,
     SHOW_ADD_DEVELOPER_MODAL,
     SHOW_UPDATE_DEVELOPER_MODAL,
     ADD_DEVELOPER,
@@ -25,6 +26,7 @@ const initialState = {
     },
     showDeveloperModal: false,  // For show and hiding the modal
     developerModalFlow: ADD_DEVELOPER,   // specify if the modal is add or update flow
+    searchDeveloper: null
 };
 
 const developerReducer = (state = initialState, action) => {
@@ -33,6 +35,13 @@ const developerReducer = (state = initialState, action) => {
         return {
             ...state,
             developerList : action.payload
+        }
+    }
+
+    if(action.type === GET_DEVELOPER_BY_ID) {
+        return {
+            ...state,
+            searchDeveloper : action.payload
         }
     }
 

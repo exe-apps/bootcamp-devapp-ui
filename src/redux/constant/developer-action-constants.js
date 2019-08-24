@@ -1,5 +1,6 @@
 // Service related actions
 export const GET_DEVELOPER_LIST = 'GET_DEVELOPER_LIST';
+export const GET_DEVELOPER_BY_ID = 'GET_DEVELOPER_BY_ID';
 export const DELETE_DEVELOPER = 'DELETE_DEVELOPER';
 
 // Modal related action
