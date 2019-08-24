@@ -10,7 +10,6 @@ class AssessmentTable extends Component {
 
     render() {
         const { assessmentList, showUpdateAssessmentModal } = this.props;
-        console.log(assessmentList);
 
         return (
             <Table striped responsive>

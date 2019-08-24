@@ -16,8 +16,6 @@ class Assessment extends Component {
     handleSubmit = (assessmentData, props, assessmentForm) => {
         const { addAssessment, updateAssessment, assessmentModalFlow, selectedDevId } = this.props;
 
-        console.log('ASSESSMENT!', selectedDevId);
-
         if(assessmentModalFlow === ADD_ASSESSMENT) 
         {
             addAssessment(selectedDevId, assessmentData);

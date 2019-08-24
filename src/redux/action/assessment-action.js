@@ -62,9 +62,6 @@ export const addAssessment = (devId, body) => {
 
 export const updateAssessment = (devId, body) => {
 
-    console.log('ASSESSMENT ACTION');
-    console.log(devId);
-
     let DEV_ASSESSMENT_URL_PROCESSED = DEV_ASSESSMENT_URL.replace('{devId}', devId);
     let DEV_ASSESSMENT_UPDATE_URL_PROCESSED = DEV_ASSESSMENT_UPDATE_URL.replace('{assessmentId}', body.assessmentId).replace('{devId}', devId);
 

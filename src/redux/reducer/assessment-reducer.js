@@ -31,7 +31,6 @@ const AssessmentReducer = (state = initialState, action) => {
     }
 
     if(action.type === GET_ASSESSMENT_LIST_BY_ID) {
-        console.log('ASSESSMENT BY LIST', action.selectedDevId);
         return {
             ...state,
             assessmentList : action.payload,
