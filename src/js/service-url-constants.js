@@ -11,6 +11,9 @@ const ALL_ASSESSMENT_URL = 'http://localhost:8081/developer/assessment';
 const DEV_ASSESSMENT_URL = 'http://localhost:8081/developer/{devId}/assessment';
 const DEV_ASSESSMENT_UPDATE_URL = 'http://localhost:8081/developer/{devId}/assessment/{assessmentId}';
 
+// Report endpoints
+const GENERATE_REPORT_URL = 'http://localhost:8081/developer/report';
+
 export {
     DEVELOPER_URL,
     DEVELOPER_ID_URL,
@@ -18,5 +21,6 @@ export {
     SKILL_ID_URL,
     ALL_ASSESSMENT_URL,
     DEV_ASSESSMENT_URL,
-    DEV_ASSESSMENT_UPDATE_URL
+    DEV_ASSESSMENT_UPDATE_URL,
+    GENERATE_REPORT_URL
 }

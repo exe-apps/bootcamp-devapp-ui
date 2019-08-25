@@ -22,6 +22,7 @@ class DeveloperTable extends Component {
             <Table striped responsive>
                 <thead>
                     <tr className='developer-table-row'>
+                        <th className='developer-table-cell'>EMP ID</th>
                         <th className='developer-table-cell'>FIRST NAME</th>
                         <th className='developer-table-cell'>MIDDLE NAME</th>
                         <th className='developer-table-cell'>LAST NAME</th>
@@ -34,6 +35,7 @@ class DeveloperTable extends Component {
                         this.props.developerList.map((developer) =>{
                             return (
                                 <tr key={developer.devId} className='developer-table-row'>
+                                    <td className='developer-table-cell'>{developer.devId}</td>
                                     <td className='developer-table-cell'>{developer.firstName}</td>
                                     <td className='developer-table-cell'>{developer.middleName}</td>
                                     <td className='developer-table-cell'>{developer.lastName}</td>
