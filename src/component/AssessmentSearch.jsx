@@ -40,12 +40,12 @@ class AssessmentSearch extends Component {
                             <button type="button" className="btn btn-primary" onClick={() => this.findDevAssessment()}>Search Developer</button>
                         </div>
                     </Col>
-                    {assessmentList.length > 0 && 
+                    {/* {assessmentList.length > 0 && 
                         <Col className='name-section'>
                             <Row>Developer Name:</Row>
                             <Row className='name-display'>{assessmentList[0].developerName}</Row>
                         </Col>
-                    }
+                    } */}
                 </Row>
             </Container>
         );
